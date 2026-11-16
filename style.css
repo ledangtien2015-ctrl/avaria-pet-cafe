@@ -1868,3 +1868,29 @@ img {
   0%   { opacity: .8; }
   100% { opacity: 0; }
 }
+
+
+.zalo-booking-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #293b2d; /* Màu xanh rêu đậm giống hệt nút cũ */
+    color: #f4f1ea; /* Màu chữ kem ngà đồng bộ với web */
+    font-family: inherit; /* Kế thừa đúng font chữ của cả website */
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em; /* Giãn chữ thoáng giống nút cũ */
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 1px solid #293b2d;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.zalo-booking-btn:hover {
+    background-color: transparent;
+    color: #293b2d;
+    transform: translateY(-2px);
+}

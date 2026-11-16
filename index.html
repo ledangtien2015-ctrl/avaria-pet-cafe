@@ -584,10 +584,9 @@
 
                         </ul>
 
-                        <a href="#home" class="btn btn-primary">
-                            TRỞ VỀ ĐẦU TRANG ↑
-                        </a>
-
+                    <a href="https://zalo.me/0764577977" target="_blank" id="zaloBookingBtn" class="zalo-booking-btn">
+                        ĐẶT BÀN QUA ZALO ↗
+                    </a>
                     </div>
 
 
@@ -793,6 +792,23 @@
 
             }
 
+        });
+
+        document.getElementById('zaloBookingBtn').addEventListener('click', function(e) {
+            // Kiểm tra trạng thái đăng nhập (ví dụ kiểm tra trong localStorage)
+            // Thay đổi 'isLoggedIn' thành tên biến/key mà hệ thống đăng nhập của bạn đang dùng
+            const isLogged = localStorage.getItem('isLoggedIn') === 'true'; 
+            
+            const phoneNumber = "0764577977";
+            
+            if (isLogged) {
+                // Đã đăng nhập -> Mở thẳng link Zalo danh bạ/chat
+                window.open(`https://zalo.me/${phoneNumber}`, '_blank');
+            } else {
+                // Chưa đăng nhập -> Mở Zalo kèm theo lời nhắn mẫu chào hỏi
+                const message = encodeURIComponent("Xin chào Avaria Pet Cafe, mình muốn đặt bàn.");
+                window.open(`https://zalo.me/${phoneNumber}?text=${message}`, '_blank');
+            }
         });
 
     </script>

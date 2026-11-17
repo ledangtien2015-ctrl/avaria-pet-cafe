@@ -31,6 +31,8 @@
     </ul>
     <div class="nav-right">
       <a href="index.html#tickets" class="nav-booking">KHÁM PHÁ NGAY ↗</a>
+       <!-- NÚT ĐỔI SÁNG/TỐI -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Chuyển chế độ sáng/tối" title="Chế độ ban đêm">🌙</button>
       <button class="menu-toggle" id="menuToggle" aria-label="Mở menu" aria-expanded="false">☰</button>
     </div>
   </div>
@@ -247,5 +249,42 @@ document.querySelectorAll(".reveal").forEach(el => io.observe(el));
     }
 </script>
   <script src="paws.js"></script>
+
+  <script>
+(function () {
+    const KEY = 'avaria_theme';
+    const body = document.body;
+    const btn = document.getElementById('themeToggle');
+
+    console.log('THEME SCRIPT CHẠY - nút:', btn); // kiểm tra F12 Console
+
+    function apply(theme) {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            if (btn) btn.textContent = '☀️';
+        } else {
+            body.classList.remove('dark-mode');
+            if (btn) btn.textContent = '🌙';
+        }
+    }
+
+    let saved = 'light';
+    try { saved = localStorage.getItem(KEY) || 'light'; } catch (e) {}
+    apply(saved);
+
+    if (btn) {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const isDark = body.classList.toggle('dark-mode');
+            const next = isDark ? 'dark' : 'light';
+            try { localStorage.setItem(KEY, next); } catch (err) {}
+            apply(next);
+            console.log('Đã đổi theme:', next);
+        });
+    } else {
+        console.warn('KHÔNG TÌM THẤY #themeToggle - kiểm tra lại HTML');
+    }
+})();
+</script>
 </body>
 </html>

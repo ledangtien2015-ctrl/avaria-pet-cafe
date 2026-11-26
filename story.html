@@ -191,65 +191,9 @@ const io = new IntersectionObserver(es => es.forEach(e => {
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 </script>
 
-  <!-- Trình phát nhạc nền Call of Silence (Đồng bộ liên trang) -->
-<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: rgba(29, 45, 34, 0.9); padding: 10px 15px; border-radius: 30px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
-    <span style="color: #f0e9dc; font-size: 11px; font-family: var(--sans); font-weight: 600; letter-spacing: 1px;">♪ Call of Silence</span>
-    <audio id="bgMusic" loop>
-        <source src="callofsilence.mp3" type="audio/mpeg">
-    </audio>
-    <button onclick="toggleMusic()" id="musicBtn" style="background: #d2c3a5; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; font-size: 12px; color: #1d2d22;">▶</button>
-</div>
 
-<script>
-    const music = document.getElementById('bgMusic');
-    const btn = document.getElementById('musicBtn');
-
-    // Khôi phục mốc thời gian và trạng thái nhạc khi chuyển trang
-    window.addEventListener('DOMContentLoaded', () => {
-        const savedTime = sessionStorage.getItem('avaria_music_time');
-        const isPlaying = sessionStorage.getItem('avaria_music_playing');
-
-        if (savedTime) {
-            music.currentTime = parseFloat(savedTime);
-        }
-
-        if (isPlaying === 'true') {
-            music.play().then(() => {
-                btn.textContent = '❚❚';
-            }).catch(() => {
-                // Nếu trình duyệt chặn tự phát lúc mới mở lại, chờ cú click đầu tiên trên trang
-                btn.textContent = '▶';
-                document.addEventListener('click', function resumeOnFirstClick() {
-                    if (sessionStorage.getItem('avaria_music_playing') === 'true' && music.paused) {
-                        music.play();
-                        btn.textContent = '❚❚';
-                    }
-                    document.removeEventListener('click', resumeOnFirstClick);
-                }, { once: true });
-            });
-        }
-    });
-
-    // Lưu mốc thời gian liên tục trước khi rời trang
-    window.addEventListener('beforeunload', () => {
-        sessionStorage.setItem('avaria_music_time', music.currentTime);
-        sessionStorage.setItem('avaria_music_playing', !music.paused);
-    });
-
-    // Bật/Tắt nhạc thủ công
-    function toggleMusic() {
-        if (music.paused) {
-            music.play();
-            btn.textContent = '❚❚';
-            sessionStorage.setItem('avaria_music_playing', 'true');
-        } else {
-            music.pause();
-            btn.textContent = '▶';
-            sessionStorage.setItem('avaria_music_playing', 'false');
-        }
-    }
 </script>
-  <script src="paws.js"></script>
+  <script src="settings.js"></script>
   <script src="fireflies.js"></script>
   
   <script>

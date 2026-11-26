@@ -72,6 +72,12 @@
     return sw;
   };
 
+
+    const NOTE_ICON =
+    '<svg viewBox="0 0 24 24" width="18" height="18" fill="#d2c3a5" aria-hidden="true" style="vertical-align:-3px;margin-right:6px">' +
+    '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>' +
+    '</svg>';
+
   // ====== 1. Nhạc nền ======
   const music = new Audio(MUSIC_SRC);
   music.loop = true;
@@ -81,7 +87,7 @@
   const savedTime = parseFloat(sget('avaria_music_time'));
   if (!isNaN(savedTime)) music.addEventListener('loadedmetadata', () => { music.currentTime = savedTime; }, { once: true });
 
-  const musicSw = addRow('♪ Nhạc nền', MUSIC_NAME, (on) => {
+    const musicSw = addRow(NOTE_ICON + 'Nhạc nền', MUSIC_NAME, (on) => {
     if (on) { music.play().catch(() => musicSw.setAttribute('aria-checked', 'false')); sset('avaria_music_playing', 'true'); }
     else { music.pause(); sset('avaria_music_playing', 'false'); }
   }, false);
@@ -101,10 +107,20 @@
     sset('avaria_music_playing', String(!music.paused));
   });
 
+
+    const PAW_ICON =
+    '<svg viewBox="0 0 24 24" width="18" height="18" fill="#d2c3a5" aria-hidden="true" style="vertical-align:-3px;margin-right:6px">' +
+    '<path d="M12 11.5c-3.2 0-6 3-6 5.8 0 2 1.6 3.2 3.4 3.2 1 0 1.8-.4 2.6-.4s1.6.4 2.6.4c1.8 0 3.4-1.2 3.4-3.2 0-2.8-2.8-5.8-6-5.8z"/>' +
+    '<ellipse cx="4.2" cy="11" rx="2" ry="2.8" transform="rotate(-20 4.2 11)"/>' +
+    '<ellipse cx="8.6" cy="5.8" rx="2.1" ry="3"/>' +
+    '<ellipse cx="15.4" cy="5.8" rx="2.1" ry="3"/>' +
+    '<ellipse cx="19.8" cy="11" rx="2" ry="2.8" transform="rotate(20 19.8 11)"/>' +
+    '</svg>';
+
   // ====== 2. Dấu chân (chỉ hiện trên máy có chuột) ======
   let pawsOn = get('avaria_paws', 'on') !== 'off';
   if (canPaws) {
-    addRow('🐾 Dấu chân', 'Theo con trỏ chuột', (on) => { pawsOn = on; set('avaria_paws', on ? 'on' : 'off'); }, pawsOn);
+        addRow(PAW_ICON + 'Dấu chân', 'Theo con trỏ chuột', (on) => { pawsOn = on; set('avaria_paws', on ? 'on' : 'off'); }, pawsOn);
 
     let lastX = null, lastY = null, left = true;
     document.addEventListener('mousemove', (e) => {

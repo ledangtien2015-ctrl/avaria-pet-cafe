@@ -23,11 +23,19 @@
     'display:grid;place-items:center;transition:transform .2s,background .25s;';
   btn.addEventListener('mouseenter', () => { btn.style.transform = 'scale(1.1)'; });
   btn.addEventListener('mouseleave', () => { btn.style.transform = 'scale(1)'; });
-  btn.textContent = '🐾';
+    btn.innerHTML =
+    '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">' +
+    '<path d="M12 11.5c-3.2 0-6 3-6 5.8 0 2 1.6 3.2 3.4 3.2 1 0 1.8-.4 2.6-.4s1.6.4 2.6.4c1.8 0 3.4-1.2 3.4-3.2 0-2.8-2.8-5.8-6-5.8z"/>' +
+    '<ellipse cx="4.2" cy="11" rx="2" ry="2.8" transform="rotate(-20 4.2 11)"/>' +
+    '<ellipse cx="8.6" cy="5.8" rx="2.1" ry="3"/>' +
+    '<ellipse cx="15.4" cy="5.8" rx="2.1" ry="3"/>' +
+    '<ellipse cx="19.8" cy="11" rx="2" ry="2.8" transform="rotate(20 19.8 11)"/>' +
+    '</svg>';
 
   const render = () => {
     btn.style.background = enabled ? '#d2c3a5' : '#293b2d';
-    btn.style.filter = enabled ? 'none' : 'grayscale(1)';
+    btn.style.color = enabled ? '#1d2d22' : '#d2c3a5';
+    btn.style.opacity = enabled ? '1' : '.85';
     btn.title = enabled ? 'Tắt dấu chân' : 'Bật dấu chân';
     btn.setAttribute('aria-pressed', String(enabled));
   };

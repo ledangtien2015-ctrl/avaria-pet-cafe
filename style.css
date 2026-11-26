@@ -1992,7 +1992,7 @@ body.dark-mode .menu-section.alt { background: var(--background-dark); }
 body.dark-mode .story-hero {
     background:
         linear-gradient(180deg, rgba(5,10,7,.65), rgba(5,10,7,.95)),
-        url("https://images.unsplash.com/photo-1760772481955-dcb947cb2d3f?auto=format&fit=crop&w=2000&q=80")
+        url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4XLv5GG-jUVAgrfTKul0MRkqo3b-gQeXXsEr_MK70aQ&s=10")
         center/cover !important;
 }
 body.dark-mode .story-page h2 { color: var(--stone-light); }
